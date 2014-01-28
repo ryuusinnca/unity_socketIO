@@ -18,7 +18,8 @@ public class Sio : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		string url = "http://54.199.161.166:3000/";
+		// string url = "http://54.199.161.166:3000/";
+		string url = "https://node_framework-c9-ryuusinnca.c9.io/";
 		this.socket = new Client(url);
 
 		this.socket.Opened += this.SocketOpened;

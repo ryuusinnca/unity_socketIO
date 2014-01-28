@@ -14,7 +14,7 @@ public class TestSocketIO : MonoBehaviour {
 
 	void Start () {
 		//string url = "http://localhost:8080/";
-		string url = "https://node_framework-c9-ryuusinnca.c9.io";
+		string url = "https://node_framework-c9-ryuusinnca.c9.io:8888/";
 		this.socket = new Client(url);
 		
 		this.socket.Opened += this.SocketOpened;
