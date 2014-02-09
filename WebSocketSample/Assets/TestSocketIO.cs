@@ -13,8 +13,8 @@ public class TestSocketIO : MonoBehaviour {
 	private string message="";
 
 	void Start () {
-		//string url = "http://localhost:8080/";
-		string url = "https://node_framework-c9-ryuusinnca.c9.io:8888/";
+		string url = "http://socket.nappers.jp:8080/";
+		// string url = "https://node_framework-c9-ryuusinnca.c9.io:8888/";
 		this.socket = new Client(url);
 		
 		this.socket.Opened += this.SocketOpened;
@@ -24,23 +24,22 @@ public class TestSocketIO : MonoBehaviour {
 		this.socket.Connect();
 
 
+		this.socket.On ("sayToAllRes", (data) => {
+			Debug.Log ("sayToAllRes");
+			Debug.Log (data.Json.args[0]);
+		});
 		/*
 		// register for 'online' event with io server
 		this.socket.On ("online", (data) => {
 			Debug.Log ("online event: ");
 			Debug.Log (data.Json.args[0]);
 		});
-		
-		this.socket.On ("socketId", (data) => {
-			Debug.Log ("socket id: ");
-			Debug.Log (data.Json.args[0]);
-		});
-		
+*/
 		this.socket.On ("sayToAllResponse", (data) => {
-			Debug.Log ("to all: ");
+			Debug.Log ("sayToAllResponse: ");
 			Debug.Log (data.Json.ToJsonString());
 		});
-		*/
+
 	}
 
 	void OnDestroy(){
@@ -66,27 +65,16 @@ public class TestSocketIO : MonoBehaviour {
 
 			Debug.Log(json);
 			this.socket.Emit("message", message);
+
+			Debug.Log("sayToAll");
+			this.socket.Emit("sayToAll", message);
 			message="";
 		}
-
-		/*
-		// Show chat messages
-		var l = string.Join("\n", messages.ToArray());
-		var height = Screen.height * 0.1f * messages.Count;
-		GUI.Label(
-			new Rect(0, Screen.height * 0.2f + 10, Screen.width * 0.8f, height), l);
-		*/
 		
 	}
 
 
-
-
-
-
-	//
-	//
-	//
+	
 	private void SocketOpened (object sender, EventArgs e){
 		Debug.Log("socket opened");
 		//this.socket.Emit("message", " login");
