@@ -54,7 +54,7 @@ public class Chat : MonoBehaviour {
 
 	
 	void Connect(){
-		ws =  new WebSocket("ws://node_framework-c9-ryuusinnca.c9.io");
+		ws =  new WebSocket("ws://socket.nappers.jp:8888");
 
 		// called when websocket messages come.
 		ws.OnMessage += (sender, e) =>
